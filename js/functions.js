@@ -38,4 +38,15 @@ extractDigits();
 // Проверка
 // console.log(extractDigits('text1p2p1w1'));
 
-
+// Функция формирования адресов
+function adresStart(string, targetLength, adresString) {
+  const repeatCount = Math.ceil((targetLength - string.length) / adresString.length);
+  const padding = adresString.repeat(repeatCount).substring(0, targetLength - string.length);
+  if (string.length >= targetLength) {
+    return string;
+  }
+  return padding + string;
+}
+adresStart();
+// Проверка
+// console.log(adresStart('hellowrld', 10, 'abc'));
