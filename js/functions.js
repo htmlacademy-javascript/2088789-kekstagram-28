@@ -13,8 +13,7 @@ stringMath();
 //  }
 
 // Проверка на полиндром
-function isPalindrome() {
-  let activeString = 'Текст';
+function isPalindrome(activeString) {
   activeString = activeString.toLowerCase().replace(/\s/g, '');
   // Проверка, является ли перевернутая строка равной исходной
   return activeString === activeString.split('').reverse().join('');
