@@ -33,7 +33,7 @@ function extractDigits(string) {
   // console.log(results);
   return results;
 }
-extractDigits();
+extractDigits('text1p2p1w1');
 // Проверка
 // console.log(extractDigits('text1p2p1w1'));
 
@@ -46,6 +46,6 @@ function adresStart(string, targetLength, adresString) {
   }
   return padding + string;
 }
-adresStart();
+adresStart('hellowrld', 10, 'abc');
 // Проверка
 // console.log(adresStart('hellowrld', 10, 'abc'));
