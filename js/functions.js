@@ -1,10 +1,8 @@
 // Функция для проверки длинны строки
-const currentString = 'Какой-то текст';
-const minLenght = 10;
-function stringMath() {
-  return currentString.length >= minLenght;
+function stringMath(currentString, minLength) {
+  return currentString.length >= minLength;
 }
-stringMath();
+stringMath('Какой-то текст', 10);
 // Проверка
 // if (stringMath(currentString, minLenght)) {
 //   console.log('Строка проходит по длинне');
@@ -18,7 +16,7 @@ function isPalindrome(activeString) {
   // Проверка, является ли перевернутая строка равной исходной
   return activeString === activeString.split('').reverse().join('');
 }
-isPalindrome();
+isPalindrome('someword');
 // Проверка
 // console.log(isPalindrome('Im a text in this test'));
 
