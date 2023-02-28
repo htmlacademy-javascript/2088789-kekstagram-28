@@ -67,7 +67,7 @@ const createPhotoInfo = () => {
   const getRandomPhotoId = getRandomNumber(0, generatedPhotoId.length - 1);
   const getRandomPhotoUrl = getRandomNumber(0, generatedPhotoUrl.length - 1);
   const getRandomPhotoDesc = getRandomNumber(0, photoDesc.length - 1);
-  const getRandomLikes = getRandomNumber(0, generatedLikes.legth - 1);
+  const getRandomLikes = getRandomNumber(0, generatedLikes.length - 1);
 
   return {
     id: generatedPhotoId[getRandomPhotoId],
