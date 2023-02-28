@@ -74,7 +74,7 @@ const createPhotoInfo = () => {
     url: generatedPhotoUrl[getRandomPhotoUrl],
     description: photoDesc[getRandomPhotoDesc],
     likes: generatedLikes[getRandomLikes],
-  }
+  };
 };
 createPhotoInfo();
 // Функция генерации комментов
