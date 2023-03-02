@@ -1,17 +1,17 @@
-const photoDesc = [
+const PHOTO_DESC = [
   'На фотографии изображены красоты чего бы то ни было',
   'Моя любимая фотография',
   'Здесь был Кекс',
 ];
 
-const userName = [
+const USER_NAME = [
   'Костя',
   'Коля',
   'Игорь',
   'Даня',
 ];
 
-const userComments = [
+const USER_COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -20,75 +20,46 @@ const userComments = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-// Функция нахождения рандомного числа
-const getRandomNumber = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+// Функция рандомизации в массиве
+function getRandomNumber(a, b) {
+  const randomDigit = a + Math.random() * (b + 1 - a);
+  return Math.floor(randomDigit);
+}
+// Создание массива фото URL
+const photoUrlgenerator = (i) => i + 1;
+const photoUrlArray = Array.from({ length: 25 }, (_, i) => photoUrlgenerator(i));
+
+// Создание массива Id фото профиля
+const avatarIdGenerator = (i) => i + 1;
+avatarIdGenerator();
+const avatarID = Array.from({ length: 6 }, (_, i) => photoUrlgenerator(i));
+
+// Поиск рандомного элемента массива
+function getRandomArrayElement(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  const randomValue = arr[randomIndex];
+  return randomValue;
+}
+// Функция генерации комментария
+const createComment = () => {
+  const gerRandomUserName = getRandomNumber(0, USER_NAME.length - 1);
+  const getRandomUserComment = getRandomNumber(0, USER_COMMENTS.length - 1);
+  return {
+    commentId: getRandomArrayElement(avatarID),
+    avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
+    message: USER_COMMENTS[getRandomUserComment],
+    name: USER_NAME[gerRandomUserName],
+  };
 };
-
-// Функция генерации Photo ID
-const photoIdGenerator = (id) => ({
-  id: id + 1
-});
-
-const generatedPhotoId = Array.from({ length: 26 }, (_, id) => photoIdGenerator(id));
-// Функция генерации UID
-const UidGenerator = (id) => ({
-  id: id + 1
-});
-
-const generatedUid = Array.from({ length: 26 }, (_, id) => UidGenerator(id));
-
-// Функция генерации URL к фото
-const photoUrlGenenerator = (i) => ({
-  i: i + 1
-});
-
-const generatedPhotoUrl = Array.from({ length: 26 }, (_, i) => photoUrlGenenerator(i));
-
-// Функция генерации аватаров пользователя
-const avatarUrlGenenerator = (i) => ({
-  i: i + 1
-});
-
-const generatedAvatarUrl = Array.from({ length: 7 }, (_, i) => avatarUrlGenenerator(i));
-
-// Функция генерации лайков
-const likesGenenerator = (i) => ({
-  i: i + 15
-});
-
-const generatedLikes = Array.from({ length: 186 }, (_, i) => likesGenenerator(i));
-
 // Функция генерации фото инфо
 const createPhotoInfo = () => {
-  const getRandomPhotoId = getRandomNumber(0, generatedPhotoId.length - 1);
-  const getRandomPhotoUrl = getRandomNumber(0, generatedPhotoUrl.length - 1);
-  const getRandomPhotoDesc = getRandomNumber(0, photoDesc.length - 1);
-  const getRandomLikes = getRandomNumber(0, generatedLikes.length - 1);
-
+  const getRandomPhotoDesc = getRandomNumber(0, PHOTO_DESC.length - 1);
   return {
-    id: generatedPhotoId[getRandomPhotoId],
-    url: generatedPhotoUrl[getRandomPhotoUrl],
-    description: photoDesc[getRandomPhotoDesc],
-    likes: generatedLikes[getRandomLikes],
+    id: getRandomNumber(1, 25),
+    url: getRandomArrayElement(photoUrlArray),
+    description: PHOTO_DESC[getRandomPhotoDesc],
+    likes: getRandomNumber(15, 200),
+    comments: createComment(),
   };
 };
 createPhotoInfo();
-// Функция генерации комментов
-const createComment = () => {
-  const getRandomUid = getRandomNumber(0, generatedUid.length - 1);
-  const getRandomAvatar = getRandomNumber(0, generatedAvatarUrl.length - 1);
-  const gerRandomUserName = getRandomNumber(0, userName.length - 1);
-  const getRandomUserComment = getRandomNumber(0, userComments.length - 1);
-
-  return {
-    id: generatedUid[getRandomUid],
-    avatar: `img/avatar-${getRandomAvatar}.svg`,
-    message: userComments[getRandomUserComment],
-    name: userName[gerRandomUserName],
-  };
-};
-createComment();
