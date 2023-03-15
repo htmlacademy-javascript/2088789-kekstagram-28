@@ -3,12 +3,6 @@ function stringMath(currentString, minLength) {
   return currentString.length >= minLength;
 }
 stringMath('Какой-то текст', 10);
-// Проверка
-// if (stringMath(currentString, minLenght)) {
-//   console.log('Строка проходит по длинне');
-// } else {
-//   console.log('Строка не проходит по длинне');
-//  }
 
 // Проверка на полиндром
 function isPalindrome(activeString) {
@@ -17,9 +11,6 @@ function isPalindrome(activeString) {
   return activeString === activeString.split('').reverse().join('');
 }
 isPalindrome('someword');
-// Проверка
-// console.log(isPalindrome('Im a text in this test'));
-
 // Возвращение целых чисел в строку
 function extractDigits(string) {
   const digits = string.match(/\d/g);
