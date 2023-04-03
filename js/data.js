@@ -22,6 +22,9 @@ const USER_COMMENTS = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
+
+const COMMENTS_COUNT = 6;
+
 // Создание массива фото URL
 const photoUrlgenerator = (i) => i + 1;
 const photoUrlArray = Array.from({ length: 25 }, (_, i) => photoUrlgenerator(i));
@@ -54,3 +57,7 @@ const createPhotoInfo = () => {
   };
 };
 createPhotoInfo();
+
+const createPhotoInform = () => Array.from({ length: COMMENTS_COUNT }, createPhotoInfo);
+
+export { createPhotoInform };
