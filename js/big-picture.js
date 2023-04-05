@@ -44,8 +44,8 @@ const createComment = (count) => {
 createComment();
 // Добавляем текст и прячем элементы
 export const bigPictureInfo = (photo) => {
-  bigPicture.document.querySelector('social__caption').textContent = photo.description;
-  bigPicture.document.querySelector('social__comment-count').classList.add('hidden');
-  bigPicture.document.querySelector('comments-loader').classList.add('hidden');
+  bigPicture.querySelector('.social__caption').textContent = photo.description;
+  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
+  bigPicture.querySelector('.comments-loader').classList.add('hidden');
 };
 
