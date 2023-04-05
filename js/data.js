@@ -37,6 +37,7 @@ const COMMENTS_COUNT = 26;
 const createComment = (_, index) => {
   const gerRandomUserName = getRandomNumber(0, USER_NAME.length - 1);
   const getRandomUserComment = getRandomNumber(0, USER_COMMENTS.length - 1);
+  index = 1;
   return {
     commentId: index + 1,
     avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
@@ -47,6 +48,7 @@ const createComment = (_, index) => {
 // Функция генерации фото инфо
 const createPhotoInfo = (_, index) => {
   const getRandomPhotoDesc = getRandomNumber(0, PHOTO_DESC.length - 1);
+  index = 1;
   return {
     id: index + 1,
     url: `photos/${index + 1}.jpg`,
