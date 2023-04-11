@@ -3,7 +3,6 @@ function getRandomNumber(a, b) {
   const randomDigit = a + Math.random() * (b + 1 - a);
   return Math.floor(randomDigit);
 }
-export { getRandomNumber };
 
 // Поиск рандомного элемента массива
 function getRandomArrayElement(arr) {
@@ -12,3 +11,4 @@ function getRandomArrayElement(arr) {
   return randomValue;
 }
 export { getRandomArrayElement };
+export { getRandomNumber };

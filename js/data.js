@@ -35,26 +35,28 @@ const COMMENTS_COUNT = 25;
 // const avatarID = Array.from({ length: 6 }, (_, i) => photoUrlgenerator(i));
 
 // Функция генерации комментария
-const createComment = (index) => {
-  const gerRandomUserName = getRandomNumber(0, USER_NAME.length - 1);
-  const getRandomUserComment = getRandomNumber(0, USER_COMMENTS.length - 1);
-  return {
-    commentId: index + 1,
-    avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
-    message: USER_COMMENTS[getRandomUserComment],
-    name: USER_NAME[gerRandomUserName],
-  };
-};
+const createComment = (index) => ({
+  commentId: index + 1,
+  avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
+  message: getRandomArrayElement(USER_COMMENTS),
+  name: getRandomArrayElement(USER_NAME),
+});
+// Созданиен массива комментариев
+const createComments = () => Array.from({ length: getRandomNumber(1, 10) }, (_, key) =>
+  createComment(key));
 // Функция генерации фото инфо
 const createPhotoInfo = (index) => ({
   id: index + 1,
   url: `photos/${index + 1}.jpg`,
   description: getRandomArrayElement(PHOTO_DESC),
   likes: getRandomNumber(15, 200),
-  comments: createComment(),
+  comments: createComments(),
 });
 
 const createPhotoInform = () => Array.from({ length: COMMENTS_COUNT }, (_, key) => createPhotoInfo(key));
 
 export { createPhotoInform };
+export { createComment };
+export { createComments };
+
 
