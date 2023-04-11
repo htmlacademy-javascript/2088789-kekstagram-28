@@ -1,4 +1,5 @@
 import { getRandomNumber } from './util.js';
+import { getRandomArrayElement } from './util.js';
 
 const PHOTO_DESC = [
   'На фотографии изображены красоты чего бы то ни было',
@@ -22,7 +23,7 @@ const USER_COMMENTS = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const COMMENTS_COUNT = 26;
+const COMMENTS_COUNT = 25;
 
 // Создание массива фото URL
 // const photoUrlgenerator = (i) => i + 1;
@@ -34,10 +35,9 @@ const COMMENTS_COUNT = 26;
 // const avatarID = Array.from({ length: 6 }, (_, i) => photoUrlgenerator(i));
 
 // Функция генерации комментария
-const createComment = (_, index) => {
+const createComment = (index) => {
   const gerRandomUserName = getRandomNumber(0, USER_NAME.length - 1);
   const getRandomUserComment = getRandomNumber(0, USER_COMMENTS.length - 1);
-  index = 1;
   return {
     commentId: index + 1,
     avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
@@ -46,18 +46,13 @@ const createComment = (_, index) => {
   };
 };
 // Функция генерации фото инфо
-const createPhotoInfo = (_, index) => {
-  const getRandomPhotoDesc = getRandomNumber(0, PHOTO_DESC.length - 1);
-  index = 1;
-  return {
-    id: index + 1,
-    url: `photos/${index + 1}.jpg`,
-    description: PHOTO_DESC[getRandomPhotoDesc],
-    likes: getRandomNumber(15, 200),
-    comments: createComment(),
-  };
-};
-createPhotoInfo();
+const createPhotoInfo = (index) => ({
+  id: index + 1,
+  url: `photos/${index + 1}.jpg`,
+  description: getRandomArrayElement(PHOTO_DESC),
+  likes: getRandomNumber(15, 200),
+  comments: createComment(),
+});
 
 const createPhotoInform = () => Array.from({ length: COMMENTS_COUNT }, (_, key) => createPhotoInfo(key));
 

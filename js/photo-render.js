@@ -1,11 +1,14 @@
 // Создаем функцию создания поста
+const templatePicture = document.querySelector('#picture').content;
+
 const createPostElement = (post) => {
-  const templatePicture = document.querySelector('#picture').content;
   const newPhotoElement = templatePicture.cloneNode(true);
+  // eslint-disable-next-line no-console
+  console.log(createPostElement());
   // Обращаемся к элементам DOM
   newPhotoElement.querySelector('.picture__img').src = post.url;
-  newPhotoElement.textContent = post.comments.length;
-  newPhotoElement.textContent = post.likes;
+  newPhotoElement.querySelector('.picture__comments').textContent = post.comments.length;
+  newPhotoElement.querySelector('.picture__likes').textContent = post.likes;
   // Функция возвращает новый элемент
   return newPhotoElement;
 };
