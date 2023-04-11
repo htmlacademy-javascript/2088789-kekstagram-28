@@ -1,7 +1,7 @@
-import './data';
-import './util';
-import { createPhotoInform } from './data';
-import { modifiedPhotoList } from './data-generator';
+import { createPhotoInform } from './data.js';
+import { modifiedPhotoList } from './photo-render.js';
+import { bigPictureInfo } from './big-picture.js';
 
-createPhotoInform();
-modifiedPhotoList();
+
+modifiedPhotoList(createPhotoInform());
+bigPictureInfo();
