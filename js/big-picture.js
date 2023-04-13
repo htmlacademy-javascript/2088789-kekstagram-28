@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 const bigPicture = document.querySelector('.big-picture');
-// Кнопка закрытия
-const cancelButton = document.querySelector('.big-picture__cancel');
 // Общий контейнер
 const commentList = bigPicture.querySelector('.social__comments');
 // li комментария
@@ -15,9 +13,6 @@ const commentCountElement = bigPicture.querySelector('.social__comment-count');
 const onBigPictureOpen = (post) => {
   bigPicture.classList.remove('hidden');
   bigPicture.querySelector('.big-picture__img img').src = post.url;
-  // Скрываем комменты
-  // bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  // bigPicture.querySelector('.comments-loader').classList.add('hidden');
   bigPicture.querySelector('.likes-count').textContent = post.likes;
   bigPicture.querySelector('.social__caption').textContent = post.description;
   // Добавляем показ комментариев 5 шт
@@ -26,28 +21,9 @@ const onBigPictureOpen = (post) => {
 
   commentCountElement.innerHTML = `${commentsToShowCount} из <span class="comments-count">${postCommentCount}</span> комментариев`;
 };
-//Функция закрытия попапа
-const closePopup = () => {
-  bigPicture.classList.add('hidden');
-};
-// Close for esc
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    closePopup();
-  }
-});
-// Закрытие по кнопке
-cancelButton.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closePopup();
-});
 // Создаем фуннкцию генерации коммента
 const createCommentElement = (comment) => {
   const newCommentElement = commentElement.cloneNode(true);
-  // if (commentIndex + 1 > COMMENTS_TO_SHOW) {
-  //   newCommentElement.classList.add('hidden');
-  // }
   // Обращение к дом элементам
   newCommentElement.querySelector('.social__picture').src = comment.avatar;
   newCommentElement.querySelector('.social__picture').alt = comment.name;

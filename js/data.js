@@ -1,6 +1,7 @@
 import { getRandomNumber } from './util.js';
 import { getRandomArrayElement } from './util.js';
-
+// Массив постов
+const POSTS = [];
 
 const PHOTO_DESC = [
   'На фотографии изображены красоты чего бы то ни было',
@@ -52,5 +53,5 @@ const createPhotoInform = () => Array.from({ length: PHOTO_COUNT }, (_, key) => 
 export { createPhotoInform };
 export { createComment };
 export { createComments };
-
+export { POSTS };
 
