@@ -8,7 +8,7 @@ const PHOTO_DESC = [
   'Здесь был Кекс',
 ];
 
-const USER_NAME = [
+const USER_NAMES = [
   'Костя',
   'Коля',
   'Игорь',
@@ -17,6 +17,8 @@ const USER_NAME = [
 
 const USER_COMMENTS = [
   'Всё отлично!',
+  'Да это фоташоп!!!!!!!!',
+  'Мега фото! Просто обалдеть. Как вам так удалось?',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
@@ -31,10 +33,10 @@ const createComment = (index) => ({
   commentId: index + 1,
   avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
   message: getRandomArrayElement(USER_COMMENTS),
-  name: getRandomArrayElement(USER_NAME),
+  name: getRandomArrayElement(USER_NAMES),
 });
 // Созданиен массива комментариев
-const createComments = () => Array.from({ length: getRandomNumber(1, 7) }, (_, key) =>
+const createComments = () => Array.from({ length: getRandomNumber(5, 15) }, (_, key) =>
   createComment(key));
 // Функция генерации фото инфо
 const createPhotoInfo = (index) => ({
