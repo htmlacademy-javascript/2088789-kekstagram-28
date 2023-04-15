@@ -1,3 +1,4 @@
+import { onChangeEffect } from './add-mage.js';
 const body = document.querySelector('body');
 // Форма с фильтрами
 const form = document.querySelector('.img-filters__form');
@@ -35,6 +36,7 @@ const closeDownloadPopup = () => {
   pristine.reset();
   imageUpload.classList.add('hidden');
   body.classList.remove('modal-open');
+  onChangeEffect();
 };
 // Закрытие по esc
 const closeByEsc = (evt) => {
