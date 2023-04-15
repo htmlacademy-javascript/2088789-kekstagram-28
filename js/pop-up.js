@@ -9,7 +9,7 @@ const cancelButton = document.querySelector('.big-picture__cancel');
 const picture = Array.from(pictureElements);
 // Открытие попапа
 const openPopup = (evt) => {
-  evt.preventDefault();
+  // evt.preventDefault();
   // Возвращаем ближайший родительский элемент
   const miniPhoto = evt.target.closest('.picture');
   // Если не найдено
