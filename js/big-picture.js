@@ -8,19 +8,6 @@ const COMMENTS_TO_SHOW = 5;
 // Счетчик комментов
 const commentCountElement = bigPicture.querySelector('.social__comment-count');
 
-
-// Открытие поста
-const onBigPictureOpen = (post) => {
-  bigPicture.classList.remove('hidden');
-  bigPicture.querySelector('.big-picture__img img').src = post.url;
-  bigPicture.querySelector('.likes-count').textContent = post.likes;
-  bigPicture.querySelector('.social__caption').textContent = post.description;
-  // Добавляем показ комментариев 5 шт
-  const postCommentCount = post.comments.length;
-  const commentsToShowCount = Math.min(COMMENTS_TO_SHOW, postCommentCount);
-
-  commentCountElement.innerHTML = `${commentsToShowCount} из < span class="comments-count" > ${postCommentCount}</span > комментариев`;
-};
 // Создаем фуннкцию генерации коммента
 const createCommentElement = (comment) => {
   const newCommentElement = commentElement.cloneNode(true);
@@ -53,6 +40,20 @@ const modifiedCommentList = (comments) => {
   // Добавляем комментарий
   commentList.appendChild(fragmentComment);
   hideComments();
+};
+// Открытие поста
+const onBigPictureOpen = (post) => {
+  bigPicture.classList.remove('hidden');
+  bigPicture.querySelector('.big-picture__img img').src = post.url;
+  bigPicture.querySelector('.likes-count').textContent = post.likes;
+  bigPicture.querySelector('.social__caption').textContent = post.description;
+  // Добавляем показ комментариев 5 шт
+  const postCommentCount = post.comments.length;
+  const commentsToShowCount = Math.min(COMMENTS_TO_SHOW, postCommentCount);
+
+  commentCountElement.innerHTML = `${commentsToShowCount} из <span class="comments-count"> ${postCommentCount}</span> комментариев`;
+
+  modifiedCommentList(post.comments);
 };
 // Показываем кнопку и колличество фото
 const socialCommentsCount = document.querySelector('.social__comment-count');

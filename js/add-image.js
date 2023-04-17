@@ -44,12 +44,12 @@ const effects = [
 ];
 
 const STANDARD_EFFECT = effects[0];
-
-const effectsElement = document.querySelector('.effects');
-const effectLevelSlider = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
-const imageUploadEffectLevel = document.querySelector('.img-upload__effect-level');
-const imgUploadPreview = document.querySelector('.img-upload__preview img');
+const body = document.querySelector('body');
+const effectsElement = body.querySelector('.effects');
+const effectLevelSlider = body.querySelector('.effect-level__slider');
+const effectLevelValue = body.querySelector('.effect-level__value');
+const imageUploadEffectLevel = body.querySelector('.img-upload__effect-level');
+const imgUploadPreview = body.querySelector('.img-upload__preview img');
 
 let chosenEffect = STANDARD_EFFECT;
 
@@ -93,7 +93,7 @@ const onSliderUpdate = () => {
   if (isDefault()) {
     imgUploadPreview.style.filter = STANDARD_EFFECT.style;
   } else {
-    imgUploadPreview.style.filter = `${chosenEffect.style} (${sliderValue}${chosenEffect.unit})`;
+    imgUploadPreview.style.filter = `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
   }
   effectLevelValue.value = sliderValue;
 };

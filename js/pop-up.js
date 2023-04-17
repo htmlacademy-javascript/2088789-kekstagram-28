@@ -1,5 +1,6 @@
 import { onBigPictureOpen } from './big-picture.js';
 import { posts } from './data.js';
+import { resetEffects } from './add-image.js';
 // выбираем все ссылки
 const pictureElements = document.querySelectorAll('.picture');
 const bigPicture = document.querySelector('.big-picture');
@@ -9,7 +10,6 @@ const cancelButton = document.querySelector('.big-picture__cancel');
 const picture = Array.from(pictureElements);
 // Открытие попапа
 const openPopup = (evt) => {
-  // evt.preventDefault();
   // Возвращаем ближайший родительский элемент
   const miniPhoto = evt.target.closest('.picture');
   // Если не найдено
@@ -28,6 +28,7 @@ document.querySelector('.pictures').addEventListener('click', openPopup);
 //Функция закрытия попапа
 const closePopup = () => {
   bigPicture.classList.add('hidden');
+  resetEffects();
 };
 // Close for esc
 document.addEventListener('keydown', (evt) => {
