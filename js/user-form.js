@@ -1,6 +1,7 @@
 import { resetEffects } from './add-image.js';
 import { sendData } from './fetch.js';
 import { showError, showSuccess } from './message.js';
+import { showAlert } from './util.js';
 
 const body = document.querySelector('body');
 // Форма с фильтрами
@@ -14,9 +15,11 @@ const commentField = document.querySelector('.text__description');
 // Текст ошибки
 const ERROR_TEXT = 'Неправильно заполнены хештеги';
 // Кнопка отправки
-const uploadButton = document.querySelector('#upload-submit');
+const uploadButton = document.querySelector('.img-upload__submit');
 // Регулярное выражение валидного хэштега
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
+// Формат файлов
+const FILE_FORMATES = ['jpg', 'jpeg', 'png'];
 // Максимальное значение
 const MAX_HASHTAG_COUNT = 5;
 // Проверка длинны тега
@@ -64,8 +67,19 @@ const openDownloadPopup = (evt) => {
   const reader = new FileReader();
   // Загрузка изображения
   reader.readAsDataURL(evt.target.files[0]);
+  const file = evt.target.files[0];
+  const fileName = file.name.toLowerCase();
+  // Проверка формата
+  const matches = FILE_FORMATES.some((it) => fileName.endsWith(it));
   reader.addEventListener('load', () => {
     imgUploadPreview.src = reader.result;
+
+    if (!matches) {
+      showAlert('Неправильный тип файла!');
+    }
+    imgUpload.classList.remove('hidden');
+    body.classList.add('modal-open');
+    document.addEventListener('keydown', closeByEsc);
   });
 };
 // Обработчик на изменение
@@ -89,38 +103,25 @@ const validateTags = (value) => {
   // Проверка на соблюдение всех условий, т.е. валидность, уникальность у каждого тега
   return hashtagValidCount(tags) && uniqueTags(tags) && tags.every(isValidTag);
 };
-// // Валидация формы по клику
-// uploadButton.addEventListener('click', (evt) => {
-//   // Проверяем валидность хэштега
-//   // Поле
-//   const value = hashtagField.value;
-//   // Валиден ли
-//   const isValid = validateTags(value);
-//   // Если хэштег невалиден, отменяем отправку формы
-//   if (!isValid) {
-//     evt.preventDefault();
-//     pristine.addError(hashtagField, ERROR_TEXT);
-//   }
-//   // Если строка пустая
-//   if (!isValid || value.trim() === '') {
-//     evt.preventDefault();
-//     pristine.addError(hashtagField, ERROR_TEXT);
-//   }
 
-// return isValid;
-// });
 // Действия с отправленной формой
 const onFormSubmit = (evt) => {
   evt.preventDefault();
+  uploadButton.setAttribute('disabled', 'disabled');
   sendData(new FormData(form))
     .then(() => {
       closeDownloadPopup();
+      document.removeEventListener('keydown', closeByEsc);
       showSuccess();
     })
     .catch(() => {
       showError();
+    })
+    .finally(() => {
+      uploadButton.removeAttribute('disabled');
     });
 };
+
 form.addEventListener('submit', onFormSubmit);
 // Создаем валидатор
 pristine.addValidator(
@@ -128,8 +129,16 @@ pristine.addValidator(
   validateTags,
   ERROR_TEXT,
 );
+
 // Проверка поля
 hashtagField.addEventListener('input', () => {
+  if (pristine.validate()) {
+    uploadButton.removeAttribute('disabled');
+  } else {
+    uploadButton.setAttribute('disabled', 'disabled');
+  }
+});
+commentField.addEventListener('input', () => {
   if (pristine.validate()) {
     uploadButton.removeAttribute('disabled');
   } else {
