@@ -1,5 +1,5 @@
 import { onBigPictureOpen } from './big-picture.js';
-import { POSTS } from './data.js';
+import { posts } from './data.js';
 // выбираем все ссылки
 const pictureElements = document.querySelectorAll('.picture');
 const bigPicture = document.querySelector('.big-picture');
@@ -20,7 +20,7 @@ const openPopup = (evt) => {
   const pictureIndex = picture.indexOf(miniPhoto);
   // Если индекс > 0 - значение приходит в массив постов
   if (pictureIndex >= 0) {
-    onBigPictureOpen(POSTS[pictureIndex]);
+    onBigPictureOpen(posts[pictureIndex]);
   }
 };
 // Событие открытия

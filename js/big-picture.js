@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const bigPicture = document.querySelector('.big-picture');
 // Общий контейнер
 const commentList = bigPicture.querySelector('.social__comments');
@@ -6,6 +5,7 @@ const commentList = bigPicture.querySelector('.social__comments');
 const commentElement = commentList.querySelector('.social__comment');
 // Колличество комментариев
 const COMMENTS_TO_SHOW = 5;
+// Счетчик комментов
 const commentCountElement = bigPicture.querySelector('.social__comment-count');
 
 
@@ -19,7 +19,7 @@ const onBigPictureOpen = (post) => {
   const postCommentCount = post.comments.length;
   const commentsToShowCount = Math.min(COMMENTS_TO_SHOW, postCommentCount);
 
-  commentCountElement.innerHTML = `${commentsToShowCount} из <span class="comments-count">${postCommentCount}</span> комментариев`;
+  commentCountElement.innerHTML = `${commentsToShowCount} из < span class="comments-count" > ${postCommentCount}</span > комментариев`;
 };
 // Создаем фуннкцию генерации коммента
 const createCommentElement = (comment) => {
